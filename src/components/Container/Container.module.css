@@ -1,0 +1,55 @@
+/* ==========================================
+   MOBILE-FIRST CONTAINER SYSTEM
+   ========================================== */
+
+/* 1. Base Container (Mobile / Extra Small Viewports) */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  /* Fluid side-padding prevents text from touching screen edges on mobile */
+  padding-left: 1rem;   /* 16px */
+  padding-right: 1rem;  /* 16px */
+}
+
+/* 2. Small Devices (Sm: Phones in Landscape, 640px and up) */
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+    padding-left: 1.5rem;  /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+}
+
+/* 3. Medium Devices (Md: Tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: clamp(868px, 2.5vw, 978px);
+  }
+}
+
+/* 4. Large Devices (Lg: Laptops/Desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 2rem;  /* 32px (Generous padding for larger screens) */
+    padding-right: 2rem; /* 32px */
+  }
+}
+
+/* 5. Extra Large Devices (Xl: Large Desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  .container {
+    /* Matches your desktop mockup's grid constraint precisely */
+    max-width: 1280px; 
+  }
+}
+
+/* 6. Ultra Wide Devices (2Xl: 1536px and up) */
+@media (min-width: 1536px) {
+  .container {
+    /* Keeps content centered and readable on massive monitors */
+    max-width: 1440px; 
+  }
+}

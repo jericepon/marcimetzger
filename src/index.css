@@ -134,29 +134,47 @@ h6 {
   isolation: isolate;
 }
 
+/* ==========================================================================
+   CORMORANT GARAMOND
+   ========================================================================== */
+
+/* Regular Axis Mapping */
 @font-face {
   font-family: "Cormorant Garamond";
-  src:
-    url("assets/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf")
-      format("truetype supports variations"),
-    url("assets/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf")
-      format("truetype-variations");
+  src: url("assets/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 900;
-  font-stretch: 50% 150%;
   font-style: normal;
 }
 
+/* Italic Axis Mapping */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("assets/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   SCHIBSTED GROTESK
+   ========================================================================== */
+
+/* Regular Axis Mapping */
 @font-face {
   font-family: "Schibsted Grotesk";
-  src:
-    url("assets/fonts/Schibsted_Grotesk/SchibstedGrotesk-VariableFont_wght.ttf")
-      format("truetype supports variations"),
-    url("assets/fonts/Schibsted_Grotesk/SchibstedGrotesk-Italic-VariableFont_wght.ttf")
-      format("truetype-variations");
+  src: url("assets/fonts/Schibsted_Grotesk/SchibstedGrotesk-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 900;
-  font-stretch: 50% 150%;
   font-style: normal;
 }
+
+/* Italic Axis Mapping */
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("assets/fonts/Schibsted_Grotesk/SchibstedGrotesk-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
 
 html,
 body {

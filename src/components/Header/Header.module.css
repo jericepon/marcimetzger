@@ -1,0 +1,135 @@
+/* Container & Layout setup */
+.headerContainer {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 4px solid #f6f5f0; /* Subtle beige baseline from image */
+  box-sizing: border-box;
+}
+
+.headerInner {
+  margin: 0 auto;
+  padding: 30px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+.headerInner {
+    padding: 20px 20px;
+  }
+}
+
+/* Elegant Serf Branding */
+.logo {
+  font-family: var(--font-family-serif);
+  font-size: clamp(17px, 2.5vw, 32px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: normal;
+  color: var(--color-text-secondary);
+}
+
+/* Centered Navigation Links */
+.navMenu {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  font-family: var(--font-family-sans);
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 500;
+  font-style: normal;
+  line-height: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.navLink:hover {
+  color: var(--color-brand-terracotta);
+}
+
+/* Contact/CTA Info */
+.contactNumber a {
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: normal;
+  text-decoration: none;
+  color: var(--color-brand-terracotta);
+}
+
+/* Mobile responsive hamburger toggle hidden on desktops */
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: block;
+  width: 19px;
+  height: 2px;
+  background: var(--color-text-primary);
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 2px;
+  background: var(--color-text-primary);
+  left: 0;
+  transition: transform 0.2s ease;
+}
+
+.hamburger::before { top: -6px; }
+.hamburger::after { bottom: -6px; }
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .mobileToggle {
+    display: block;
+    z-index: 10;
+  }
+
+  .navMenu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+    flex-direction: column;
+    padding: 80px 30px;
+    gap: 24px;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .navOpen {
+    right: 0;
+  }
+
+  /* Hamburger transformation into an X when open */
+  .open {
+    background: transparent;
+  }
+  .open::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .open::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .contactNumber {
+    display: none; /* Safely hide phone string on cramped viewports */
+  }
+}

@@ -1,10 +1,11 @@
-import { Icon } from "./components/Icon"
+import Header from "./components/Header/Header"
+import { Icon } from "./components/Icon/Icon"
 
 function App() {
 
   return (
     <>
-      App
+    <Header />
       <Icon name="facebook" fill="red" />
       <Icon name="instagram" />
       <Icon name="linkedin" />
