@@ -1,0 +1,77 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: var(--space-lg);
+}
+
+.cardImageContainer {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 480px;
+}
+
+.cardTitle {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: var(--letter-spacing-serif);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.cardDescription {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-sans);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.cardLink {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-uppercase);
+  text-transform: uppercase;
+  color: var(--color-brand-terracotta);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: opacity 0.2s ease;
+}
+
+.cardLink:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .cardContent {
+    max-width: 100%;
+  }
+}

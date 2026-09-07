@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef, type CSSProperties } from 'react';
-import styles from './Header.module.css';
+import { useEffect, useRef, useState, type CSSProperties, type RefObject } from 'react';
 import { Container } from '../Container/Container';
+import styles from './Header.module.css';
+import { useActiveSection } from '../../contenxt/ActiveSectionContext';
 
-function Header() {
+function Header(pops: { ref?: RefObject<HTMLElement | null> }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollRatio, setScrollRatio] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
-
+  const activeId = useActiveSection();
+  
   useEffect(() => {
     // Calculates the scroll range target based on header height
     const maxScroll = headerRef.current ? headerRef.current.offsetHeight : 100;
@@ -15,6 +17,7 @@ function Header() {
       const currentScroll = window.scrollY;
       // Locks the value strictly between 0 and 1
       const ratio = Math.min(currentScroll / maxScroll, 1);
+       
       setScrollRatio(ratio);
     };
 
@@ -27,7 +30,7 @@ function Header() {
 
   // Dynamically inject the progress value into CSS
   const dynamicVars = {
-    '--scroll-ratio': scrollRatio,
+    '--scroll-ratio': activeId === 'hero' ? scrollRatio : 0,
   } as CSSProperties;
 
   return (
