@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, type CSSProperties } from 'react';
 import styles from './Header.module.css';
 import { Container } from '../Container/Container';
 
@@ -28,7 +28,7 @@ function Header() {
   // Dynamically inject the progress value into CSS
   const dynamicVars = {
     '--scroll-ratio': scrollRatio,
-  } as React.CSSProperties;
+  } as CSSProperties;
 
   return (
     <header 
