@@ -1,0 +1,62 @@
+/* Container spanning full section width matching the background token */
+.sectionContainer {
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  padding: var(--space-lg) var(--site-padding);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Master grid grouping framing the three cards side by side */
+.gridContainer {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-md);
+}
+
+/* Rounded card configurations matching the layout architecture design tokens */
+.card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md); /* 12px smooth rounding based on theme tokens */
+  padding: var(--space-md); /* Adapts perfectly inside mobile viewports */
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Elegant italic serif typography style settings */
+.cardTitle {
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  color: var(--color-brand-terracotta); /* Terracotta color accent */
+  letter-spacing: var(--letter-spacing-serif);
+  margin-bottom: var(--space-sm);
+  font-weight: 400; /* Keeps variable variable weight clean and organic */
+}
+
+/* Body descriptive copy styling settings */
+.cardDescription {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary); /* Desert slate-gray layout color mapping */
+  letter-spacing: var(--letter-spacing-sans);
+}
+
+/* Desktop Media Adjustments */
+@media (min-width: 900px) {
+  .gridContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  
+  .card {
+    padding: calc(var(--space-md) * 1.5) var(--space-md); /* Extra vertical breathing room on wide viewports */
+  }
+}

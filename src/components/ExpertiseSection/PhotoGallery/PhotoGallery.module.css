@@ -1,0 +1,102 @@
+/* Core container layout metrics */
+.gallerySection {
+  width: 100%;
+  background-color: var(--color-bg-white);
+  padding: var(--space-lg) 0; /* Bleeds container edge-to-edge for swiper tracks */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Header placement configurations */
+.galleryHeader {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  padding: 0 var(--site-padding);
+}
+
+/* Master editorial section title styling */
+.galleryTitle {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--letter-spacing-serif);
+  font-weight: 400;
+}
+
+/* 🎠 THE CAROUSEL SLIDER ENGINE (Enforces single-row layout across ALL screens) */
+.galleryInner {
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* Arranges elements side by side */
+  flex-wrap: nowrap; /* STRICTLY ENFORCED: Prevents slides from wrapping into grid stacks */
+  gap: var(--space-sm);
+  overflow-x: auto; /* Enables native responsive scrolling/swiping gesture support */
+  overflow-y: hidden;
+  padding: 0 var(--site-padding) var(--space-sm) var(--site-padding);
+  
+  /* Modern CSS Scroll Snapping parameters */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  
+  /* Clears default system desktop/mobile scrollbar styling indicators */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.galleryInner::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Carousel Slider Card Items */
+.imageCard {
+  /* flex parameters format: grow | shrink | basis */
+  flex: 0 0 82%; /* Renders standard card sizing layout on mobile viewports */
+  aspect-ratio: 4 / 5; /* Preserves the high aspect ratio vertical panels */
+  overflow: hidden;
+  border-radius: var(--radius-lg); /* Your 24px rounded design token */
+  background-color: var(--color-bg-primary);
+  scroll-snap-align: center; /* Snaps beautifully to screen focal center paths upon swipe release */
+}
+
+.imageCardSpacer {
+  aspect-ratio: 4 / 5;
+  flex: 0 0 12.5%;
+  scroll-snap-align: center;
+}
+
+/* Image content element dimensions */
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Tablet Scale Adjustment (Enforces single-row layout, scales slide bases) */
+@media (min-width: 600px) {
+  .imageCard {
+    flex: 0 0 29.5%
+  }
+}
+
+/* Desktop Scale Adjustment (Enforces single-row carousel slider instead of boxes) */
+@media (min-width: 1024px) {
+  .gallerySection {
+    padding: var(--space-lg) 0;
+  }
+  
+  .imageCard {
+    flex: 0 0 43.5%; /* Fluid width calculation to cleanly preview 4 panels side-by-side in row lines */
+    scroll-snap-align: start; /* Shifts alignment mapping anchor targets cleanly over edge boundaries */
+  }
+}
+
+/* Clean luxury card zoom layout tracking transition values on hover */
+@media (hover: hover) {
+  .imageCard:hover .galleryImage {
+    transform: scale(1.04);
+  }
+}
