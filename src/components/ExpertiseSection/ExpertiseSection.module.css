@@ -9,17 +9,6 @@
   margin-bottom: var(--space-lg);
 }
 
-.subtitle {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-  font-weight: 600;
-  letter-spacing: var(--letter-spacing-uppercase);
-  text-transform: uppercase;
-  color: var(--color-brand-terracotta);
-  margin-bottom: var(--space-xs);
-}
-
 .title {
   font-family: var(--font-family-serif);
   font-size: var(--font-size-h1);
@@ -27,6 +16,7 @@
   font-weight: 400;
   letter-spacing: var(--letter-spacing-serif);
   color: var(--color-text-secondary);
+  text-transform: uppercase;
 }
 
 .list {

@@ -1,0 +1,204 @@
+/* Layout section container using your custom theme variables */
+.sectionWrapper {
+  width: 100%;
+  background-color: var(--color-bg-primary);
+  padding: var(--space-lg) var(--site-padding);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Master container defining the asymmetrical two-column layout grid balance */
+.contentContainer {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: calc(var(--space-lg) * 0.8);
+}
+
+/* ================= LEFT COLUMN ================= */
+.formColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-hero);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--space-md);
+  letter-spacing: var(--letter-spacing-serif);
+}
+
+.mainForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    max-width: 540px; /* Constrains input fields exactly like design specs */
+  }
+}
+
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-xs) * 1.2);
+}
+
+.fieldLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-uppercase);
+  font-weight: 500;
+}
+
+/* Input structures mapped to soft line borders and radius-sm design token values */
+.textField,
+.textareaField {
+  width: 100%;
+  padding: calc(var(--space-sm) * 1.2) var(--space-sm);
+  background-color: var(--color-bg-white);
+  border: 1px solid #e2dbd2; /* Faint elegant custom warm-tint line layout match */
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.textareaField {
+  resize: vertical;
+}
+
+.textField::placeholder,
+.textareaField::placeholder {
+  color: #c4beb4; /* Subtle warm grey placeholder text coloring */
+  opacity: 1;
+}
+
+.textField:focus,
+.textareaField:focus {
+  border-color: var(--color-brand-terracotta);
+  box-shadow: 0 0 0 3px rgba(192, 92, 70, 0.08);
+}
+
+/* Premium pill action button matching the terracotta branding tokens */
+.submitButton {
+  align-self: flex-start;
+  background-color: var(--color-brand-terracotta);
+  color: var(--color-bg-white);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: calc(var(--space-sm) * 1.2) var(--space-md);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+  letter-spacing: var(--letter-spacing-uppercase);
+  cursor: pointer;
+  margin-top: var(--space-xs);
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+@media (hover: hover) {
+  .submitButton:hover {
+    opacity: 0.92;
+  }
+}
+
+.submitButton:active {
+  transform: scale(0.98);
+}
+
+/* ================= RIGHT COLUMN ================= */
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--space-sm) * 0.5);
+}
+
+.upperLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  color: var(--color-brand-terracotta); /* Standout brand color indicator label text */
+  letter-spacing: var(--letter-spacing-uppercase);
+  font-weight: 600;
+  margin-bottom: calc(var(--space-xs) * 1.5);
+}
+
+.infoHeading {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+  letter-spacing: var(--letter-spacing-serif);
+}
+
+.infoSubtext {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+  max-width: 480px;
+}
+
+.contactDetailsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+/* Icons are tinted with the terracotta brand color token matching the design layout files */
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand-terracotta);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detailText {
+  color: var(--color-text-primary);
+}
+
+.detailLink {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.detailLink:hover {
+  color: var(--color-brand-terracotta);
+}
+
+/* ================= RESPONSIVE TRANSITIONS ================= */
+@media (min-width: 900px) {
+  .contentContainer {
+    grid-template-columns: 1.1fr 0.9fr; /* Creates asymmetrical split columns exactly matching your mockup layout proportions */
+    gap: var(--space-md);
+  }
+  
+  .infoColumn {
+    padding-left: var(--space-md);
+  }
+}

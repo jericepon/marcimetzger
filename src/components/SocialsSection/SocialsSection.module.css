@@ -1,0 +1,48 @@
+/* Deep off-black structural container block mapping */
+.sectionWrapper {
+  width: 100%;
+  background-color: var(--color-bg-secondary); /* Uses your rich charcoal/off-black design token */
+  padding: var(--space-md) var(--site-padding); /* Spacious vertical rhythm matching layout bounds */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Horizontal track container holding social action endpoints */
+.socialsRowContainer {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md); /* Spacious premium layout item gap tracking scales */
+}
+
+/* Anchor frame structuring uniform interactive areas for the vector icons */
+.iconLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  opacity: 0.85; /* Soft clean layout blending mode default */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Forces your custom SVG utility structure to scale precisely inside bounding layers */
+.iconLink svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Luxury interaction layout transition feedback cues */
+@media (hover: hover) {
+  .iconLink:hover {
+    opacity: 1;
+    transform: translateY(-2px); /* Subtle luxurious lift effect on desktop focus paths */
+  }
+}
+
+.iconLink:active {
+  transform: translateY(0);
+}

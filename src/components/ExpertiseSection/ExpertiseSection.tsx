@@ -10,9 +10,8 @@ export const ExpertiseSection: React.FC<{ ref?: RefObject<HTMLElement | null> }>
   return (
     <section ref={registerRef} className={styles.section} id='expertise'>
       <header className={styles.header}>
-        <p className={styles.subtitle}>Our Expertise</p>
         <h2 className={styles.title}>
-          Comprehensive Property Marketing <br /> &amp; Advisory
+          Get it sold
         </h2>
       </header>
 

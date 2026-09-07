@@ -1,0 +1,57 @@
+/* Clean structural section wrapper using design tokens */
+.sectionWrapper {
+  width: 100%;
+  background-color: var(--color-bg-white);
+  padding: calc(var(--space-md) * 1.5) var(--site-padding);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Responsive grid grouping supporting layout shifts across display form factors */
+.logoRowContainer {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid layout balance for small mobile screens */
+  gap: var(--space-md);
+  justify-items: center;
+  align-items: center;
+}
+
+/* Individual framing wrapper ensuring uniform sizing limits */
+.imageFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 120px; /* Limits bounds for image file ratios */
+  height: 60px;
+  opacity: 0.85; /* Softens color contrast slightly to blend with the premium theme */
+}
+
+/* Ensures layout asset rendering properties stay centered and pristine */
+.partnerImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Prevents stretching and distortion of client brand marks */
+  display: block;
+}
+
+/* Responsive Desktop Transition Layer */
+@media (min-width: 768px) {
+  .logoRowContainer {
+    /* Transitions columns seamlessly back into a single continuous row layout format */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    gap: var(--space-sm);
+  }
+
+  .imageFrame {
+    max-width: 140px;
+    height: 70px;
+  }
+}

@@ -2,7 +2,7 @@
 .gallerySection {
   width: 100%;
   background-color: var(--color-bg-white);
-  padding: var(--space-lg) 0; /* Bleeds container edge-to-edge for swiper tracks */
+  padding: var(--space-lg) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,6 @@
   padding: 0 var(--site-padding);
 }
 
-/* Master editorial section title styling */
 .galleryTitle {
   font-family: var(--font-family-serif);
   font-size: var(--font-size-h1);
@@ -26,39 +25,48 @@
   font-weight: 400;
 }
 
-/* 🎠 THE CAROUSEL SLIDER ENGINE (Enforces single-row layout across ALL screens) */
-.galleryInner {
+/* 🎠 THE CAROUSEL SLIDER TRACK (Maintains seamless row lineups) */
+.galleryContainer {
   width: 100%;
   display: flex;
-  flex-direction: row; /* Arranges elements side by side */
-  flex-wrap: nowrap; /* STRICTLY ENFORCED: Prevents slides from wrapping into grid stacks */
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: var(--space-sm);
-  overflow-x: auto; /* Enables native responsive scrolling/swiping gesture support */
+  overflow-x: auto;
   overflow-y: hidden;
   padding: 0 var(--site-padding) var(--space-sm) var(--site-padding);
   
-  /* Modern CSS Scroll Snapping parameters */
+  /* Open up visual cues for mouse gestures */
+  cursor: grab;
+  
+  /* Mobile Swipe Snap Configuration */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   
-  /* Clears default system desktop/mobile scrollbar styling indicators */
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
-.galleryInner::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+.galleryContainer::-webkit-scrollbar {
+  display: none;
 }
 
-/* Carousel Slider Card Items */
+/* 🛑 DYNAMIC INTERACTIVE CLASSES: Triggered when mouse button is clicked down */
+.grabbing {
+  cursor: grabbing;
+  scroll-snap-type: none; /* Temporarily disables snaps so dragging track movement stays fluid */
+  scroll-behavior: auto; /* Drops transition dampening overrides for instant cursor attachment tracking */
+}
+
+/* Slider Card Settings */
 .imageCard {
-  /* flex parameters format: grow | shrink | basis */
-  flex: 0 0 82%; /* Renders standard card sizing layout on mobile viewports */
-  aspect-ratio: 4 / 5; /* Preserves the high aspect ratio vertical panels */
+  flex: 0 0 82%; /* Mobile baseline width proportion */
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  border-radius: var(--radius-lg); /* Your 24px rounded design token */
+  border-radius: var(--radius-lg);
   background-color: var(--color-bg-primary);
-  scroll-snap-align: center; /* Snaps beautifully to screen focal center paths upon swipe release */
+  scroll-snap-align: center;
+  user-select: none; /* Prevents annoying layout text highlighting on cursor move steps */
 }
 
 .imageCardSpacer {
@@ -67,36 +75,32 @@
   scroll-snap-align: center;
 }
 
-/* Image content element dimensions */
 .galleryImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  pointer-events: none; /* Prevents ghost clicks on picture boxes during drag translation overrides */
 }
 
-/* Tablet Scale Adjustment (Enforces single-row layout, scales slide bases) */
+/* Tablet Scales */
 @media (min-width: 600px) {
   .imageCard {
-    flex: 0 0 29.5%
+    flex: 0 0 45%;
   }
 }
 
-/* Desktop Scale Adjustment (Enforces single-row carousel slider instead of boxes) */
+/* Desktop Scale Bounds (Enforces 4 visible columns inside viewport lines while keeping slide capabilities) */
 @media (min-width: 1024px) {
-  .gallerySection {
-    padding: var(--space-lg) 0;
-  }
-  
   .imageCard {
-    flex: 0 0 43.5%; /* Fluid width calculation to cleanly preview 4 panels side-by-side in row lines */
-    scroll-snap-align: start; /* Shifts alignment mapping anchor targets cleanly over edge boundaries */
+    flex: 0 0 23.5%; /* Beautiful 4-card preview track layout setup across desktop rows */
+    scroll-snap-align: start;
   }
 }
 
-/* Clean luxury card zoom layout tracking transition values on hover */
 @media (hover: hover) {
-  .imageCard:hover .galleryImage {
+  /* Only animate image zoom if the user isn't dragging the carousel track */
+  .galleryContainer:not(.grabbing) .imageCard:hover .galleryImage {
     transform: scale(1.04);
   }
 }

@@ -37,10 +37,9 @@ const registerRef = useRegisterSection('hero');
 
           {/* Core Editorial Headlines */}
           <div className={styles.editorialHeadingBlock}>
-            <span className={styles.agencyLabel}>THE SHIELD REALTY GROUP</span>
+            <span className={styles.agencyLabel}>MARCI METZGER - THE RIDGE REALTY GROUP</span>
             <h1 className={styles.mainTitle}>
-              Acquire Your Sanctuary in the <br className={styles.desktopLineBreak} />
-              Desert Valley
+              Pahrump Realtor
             </h1>
           </div>
 
