@@ -43,10 +43,10 @@ function Header() {
           </div>
 
           <nav className={`${styles.navMenu} ${isOpen ? styles.navOpen : ''}`}>
-            <a href="#featured" className={styles.navLink}>FEATURED LISTINGS</a>
-            <a href="#services" className={styles.navLink}>CORE SERVICES</a>
-            <a href="#community" className={styles.navLink}>THE COMMUNITY</a>
-            <a href="#contact" className={styles.navLink}>CONTACT</a>
+            <a href="#home" className={styles.navLink}>HOME</a>
+            <a href="#listings" className={styles.navLink}>LISTINGS</a>
+            <a href="#lets-move" className={styles.navLink}>LET'S MOVE</a>
+            <a href="#about-us" className={styles.navLink}>ABOUT US</a>
           </nav>
 
           <div className={styles.contactNumber}>
