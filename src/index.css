@@ -55,6 +55,13 @@
   /* Layout Constraints */
   --max-width-desktop: 1280px;
   --site-padding: clamp(1.5rem, 5vw, 4rem);
+
+  /* Z-Index Layering System */
+  --z-layer-1: 10;
+  --z-layer-2: 20;
+  --z-layer-3: 30;
+  --z-layer-4: 40;
+  --z-layer-5: 50;
 }
 
 /* Global CSS reset and base styles */

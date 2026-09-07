@@ -1,12 +1,36 @@
 import { useState } from 'react';
 import styles from './Header.module.css';
+import { useEffect, useRef } from 'react';
 import { Container } from '../Container/Container';
 
-const Header = () => {
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // 1. Get the baseline height of the header exactly once on layout mount
+    const triggerThreshold = headerRef.current ? headerRef.current.offsetHeight : 80;
+
+    const handleScroll = () => {
+      // 2. Direct clean comparison: Is our current scroll position greater than the height?
+      if (window.scrollY > triggerThreshold) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    // Listen to scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true }); // passive improves scroll performance
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); // Empty dependency array ensures threshold calculation is locked and stable
 
   return (
-    <header className={styles.headerContainer}>
+    <header ref={headerRef} className={`${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.headerInner}>
           {/* Logo/Branding Section */}
