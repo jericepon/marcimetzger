@@ -1,53 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './Header.module.css';
-import { useEffect, useRef } from 'react';
 import { Container } from '../Container/Container';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollRatio, setScrollRatio] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    // 1. Get the baseline height of the header exactly once on layout mount
-    const triggerThreshold = headerRef.current ? headerRef.current.offsetHeight : 80;
+    // Calculates the scroll range target based on header height
+    const maxScroll = headerRef.current ? headerRef.current.offsetHeight : 100;
 
     const handleScroll = () => {
-      // 2. Direct clean comparison: Is our current scroll position greater than the height?
-      if (window.scrollY > triggerThreshold) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const currentScroll = window.scrollY;
+      // Locks the value strictly between 0 and 1
+      const ratio = Math.min(currentScroll / maxScroll, 1);
+      setScrollRatio(ratio);
     };
 
-    // Listen to scroll events
-    window.addEventListener('scroll', handleScroll, { passive: true }); // passive improves scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // Empty dependency array ensures threshold calculation is locked and stable
+  }, []); 
+
+  // Dynamically inject the progress value into CSS
+  const dynamicVars = {
+    '--scroll-ratio': scrollRatio,
+  } as React.CSSProperties;
 
   return (
-    <header ref={headerRef} className={`${styles.headerContainer} ${isScrolled ? styles.scrolled : ''}`}>
+    <header 
+      ref={headerRef} 
+      className={styles.headerContainer} 
+      style={dynamicVars}
+    >
       <Container>
         <div className={styles.headerInner}>
-          {/* Logo/Branding Section */}
           <div className={styles.logo}>
             Marci Metzger
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button 
-            className={styles.mobileToggle} 
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Navigation"
-          >
-            <span className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}></span>
-          </button>
-
-          {/* Navigation Links */}
           <nav className={`${styles.navMenu} ${isOpen ? styles.navOpen : ''}`}>
             <a href="#featured" className={styles.navLink}>FEATURED LISTINGS</a>
             <a href="#services" className={styles.navLink}>CORE SERVICES</a>
@@ -55,15 +49,21 @@ function Header() {
             <a href="#contact" className={styles.navLink}>CONTACT</a>
           </nav>
 
-          {/* Action / Contact Number */}
           <div className={styles.contactNumber}>
             <a href="tel:7025133162">(702) 513-3162</a>
           </div>
 
+          <button 
+            className={styles.mobileToggle} 
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation"
+          >
+            <span className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}></span>
+          </button>
         </div>
       </Container>
     </header>
   );
-};
+}
 
 export default Header;

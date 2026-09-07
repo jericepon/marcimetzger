@@ -1,11 +1,16 @@
 /* Container & Layout setup */
 .headerContainer {
   width: 100%;
-  background-color: #ffffff;
   box-sizing: border-box;
   position: fixed;
   top: 0;
   z-index: var(--z-layer-1);
+  
+  /* 
+    Gradually scales down background alpha from white (1) to transparent (0)
+    Formula: 1 - scrollRatio
+  */
+  background-color: rgba(255, 255, 255, calc(1 - var(--scroll-ratio)));
 }
 
 .headerInner {
@@ -22,14 +27,16 @@
   }
 }
 
-/* Elegant Serf Branding */
+/* Elegant Serif Branding */
 .logo {
   font-family: var(--font-family-serif);
   font-size: clamp(17px, 2.5vw, 32px);
   font-weight: 500;
   font-style: italic;
   line-height: normal;
-  color: var(--color-text-secondary);
+  
+  /* Blends from var(--color-text-secondary) to white */
+  color: color-mix(in srgb, var(--color-text-secondary) calc((1 - var(--scroll-ratio)) * 100%), var(--color-bg-white));
 }
 
 /* Centered Navigation Links */
@@ -46,7 +53,9 @@
   line-height: normal;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--color-text-primary);
+  
+  /* Blends links from primary color to white on desktop scroll */
+  color: color-mix(in srgb, var(--color-text-primary) calc((1 - var(--scroll-ratio)) * 100%), var(--color-bg-white));
 }
 
 .scrolled {
@@ -77,9 +86,8 @@
     }
   }
 }
-
 .navLink:hover {
-  color: var(--color-brand-terracotta);
+  color: var(--color-brand-terracotta) !important; /* Force hover priority */
 }
 
 /* Contact/CTA Info */
@@ -90,7 +98,9 @@
   font-style: normal;
   line-height: normal;
   text-decoration: none;
-  color: var(--color-brand-terracotta);
+  
+  /* Gradually changes the terracotta link to white */
+  color: color-mix(in srgb, var(--color-brand-terracotta) calc((1 - var(--scroll-ratio)) * 100%), var(--color-bg-white));
 }
 
 /* Mobile responsive hamburger toggle hidden on desktops */
@@ -101,13 +111,13 @@
   cursor: pointer;
 }
 
+/* Hamburger lines transition to white */
 .hamburger {
   display: block;
   width: 19px;
   height: 2px;
-  background: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-text-primary) calc((1 - var(--scroll-ratio)) * 100%), var(--color-bg-white));
   position: relative;
-  transition: background 0.2s ease;
 }
 
 .hamburger::before,
@@ -116,9 +126,8 @@
   position: absolute;
   width: 19px;
   height: 2px;
-  background: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-text-primary) calc((1 - var(--scroll-ratio)) * 100%), var(--color-bg-white));
   left: 0;
-  transition: transform 0.2s ease;
 }
 
 .hamburger::before {
@@ -149,13 +158,17 @@
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* Keep mobile drop-down menu items readable (force text colors inside menu) */
+  .navMenu .navLink {
+    color: var(--color-text-primary);
+  }
+
   .navOpen {
     right: 0;
   }
 
-  /* Hamburger transformation into an X when open */
   .open {
-    background: transparent;
+    background: transparent !important;
   }
   .open::before {
     transform: translateY(6px) rotate(45deg);
@@ -165,6 +178,6 @@
   }
 
   .contactNumber {
-    display: none; /* Safely hide phone string on cramped viewports */
+    display: none;
   }
 }
