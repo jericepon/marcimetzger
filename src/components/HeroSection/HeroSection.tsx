@@ -5,7 +5,7 @@ import { useRegisterSection } from '../../contenxt/ActiveSectionContext';
 import { Container } from '../Container/Container';
 import styles from './HeroSection.module.css';
 
-const HeroSection = forwardRef<HTMLElement>(({...props}, ref) => {
+const HeroSection = forwardRef<HTMLElement>(() => {
 const registerRef = useRegisterSection('hero');
   
   return (

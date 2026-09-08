@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, useRef, type ReactNode, type RefObject } from 'react';
+
 type SectionsId = 'hero' | 'expertise';
 
-// Define what values components can extract from our context
 interface ActiveSectionContextType {
   activeId: SectionsId | '';
   registerSection: (id: SectionsId, ref: RefObject<HTMLElement | null>) => void;
@@ -16,11 +16,8 @@ interface ProviderProps {
 
 export function ActiveSectionProvider({ children, rootMargin = '-20% 0px -60% 0px' }: ProviderProps) {
   const [activeId, setActiveId] = useState<SectionsId | ''>('');
-  
-  // A mutable dictionary to keep track of sections dynamically mapped by their IDs
   const sectionsRegistry = useRef<{ [id: string]: RefObject<HTMLElement | null> }>({});
 
-  // Registration function that children call when they mount
   const registerSection = (id: SectionsId, ref: RefObject<HTMLElement | null>) => {
     sectionsRegistry.current[id] = ref;
   };
@@ -41,7 +38,6 @@ export function ActiveSectionProvider({ children, rootMargin = '-20% 0px -60% 0p
       threshold: 0,
     });
 
-    // Observe all currently registered DOM nodes
     Object.values(sectionsRegistry.current).forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
@@ -49,8 +45,7 @@ export function ActiveSectionProvider({ children, rootMargin = '-20% 0px -60% 0p
     return () => {
       observer.disconnect();
     };
-    // Runs when the registry changes or rootMargin adjusts
-  }, [sectionsRegistry, rootMargin]);
+  }, [rootMargin]);
 
   return (
     <ActiveSectionContext.Provider value={{ activeId, registerSection }}>
@@ -59,7 +54,8 @@ export function ActiveSectionProvider({ children, rootMargin = '-20% 0px -60% 0p
   );
 }
 
-// Custom hook to consume the active ID inside headers or navigation menus
+// Tell ESLint to allow these hook exports alongside the component
+/* eslint-disable-next-line react-refresh/only-export-components */
 export function useActiveSection() {
   const context = useContext(ActiveSectionContext);
   if (!context) {
@@ -68,7 +64,7 @@ export function useActiveSection() {
   return context.activeId;
 }
 
-// Custom hook to quickly bind sections directly to the registry on mount
+/* eslint-disable-next-line react-refresh/only-export-components */
 export function useRegisterSection(id: SectionsId) {
   const context = useContext(ActiveSectionContext);
   if (!context) {

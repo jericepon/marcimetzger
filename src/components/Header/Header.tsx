@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, type CSSProperties, type RefObject } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useActiveSection } from '../../contenxt/ActiveSectionContext';
 import { Container } from '../Container/Container';
 import styles from './Header.module.css';
-import { useActiveSection } from '../../contenxt/ActiveSectionContext';
 
-function Header(pops: { ref?: RefObject<HTMLElement | null> }) {
+function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrollRatio, setScrollRatio] = useState(0);
   const headerRef = useRef<HTMLElement>(null);

@@ -2,12 +2,6 @@ import React, { useRef, useState } from 'react';
 import styles from './PhotoGallery.module.css';
 import gallery from '../../../assets/gallery/Gallery';
 
-interface GalleryItem {
-  id: string;
-  imageSrc: string;
-  imageAlt: string;
-}
-
 const galleryData = Object.keys(gallery).map((key) => ({
   id: crypto.randomUUID(),
   imageSrc: gallery[key as keyof typeof gallery],
